@@ -110,7 +110,7 @@ body {
     padding-top: 12px;
     padding-bottom: 12px;
     color: #fff;
-    background: color(var(--darkgrey) l(-5%)) no-repeat center center;
+    background: #090a0b no-repeat 50%;
     background-size: cover;
 }
 
@@ -164,7 +164,7 @@ body {
 }
 
 .site-logo {
-    max-height: 45px;
+    max-height: 64px;
 }
 
 .site-description {
@@ -173,7 +173,7 @@ body {
     padding: 5px 0;
     font-size: 2.2rem;
     font-weight: 300;
-    letter-spacing: 0.5px;
+    letter-spacing: 1.4px;
     opacity: 0.8;
 }
 
@@ -314,6 +314,10 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
 
 .social-link-wb svg {
     height: 1.6rem;
+}
+
+.social-link-linkedin svg {
+    height: 2.0rem !important;
 }
 
 .social-link-wb svg path {
