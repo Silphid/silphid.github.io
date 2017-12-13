@@ -3,9 +3,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
    
-      <title>/</title>
+      <title>http://localhost:4000/</title>
    
-   <link>/</link>
+   <link>http://localhost:4000/</link>
    <description>mindful software design</description>
    <language>en-ca</language>
    
@@ -19,26 +19,26 @@
    <description>
    <![CDATA[ mindful software design ]]>
    </description>
-   <link>/</link>
+   <link>http://localhost:4000/</link>
    <image>
-   <url>/assets/images/silphid-icon.png</url>
+   <url>http://localhost:4000/assets/images/silphid-icon.png</url>
    <title>Silphid</title>
-   <link>/</link>
+   <link>http://localhost:4000/</link>
    </image>
    <generator>Jekyll 3.6.2</generator>
    <lastBuildDate></lastBuildDate>
-   <atom:link href="/rss.xml" rel="self" type="application/rss+xml"/>
+   <atom:link href="http://localhost:4000/rss.xml" rel="self" type="application/rss+xml"/>
    <ttl>60</ttl>
    <atom:link href="rss" rel="self" type="application/rss+xml" />
    
 	<item>
 	  <title>Welcome to Silphid</title>
-	  <link>/welcome</link>
+	  <link>http://localhost:4000/welcome</link>
 		
 				
 		
 	  <pubDate>2017-12-05T00:00:00-05:00</pubDate>
-	  <guid>/welcome</guid>
+	  <guid>http://localhost:4000/welcome</guid>
 	  <description><![CDATA[
 	     <p>Hey! Nice to have you here! My name is Mathieu Frenette and I like to call myself a <em>mindful software designer</em>.</p>
 
