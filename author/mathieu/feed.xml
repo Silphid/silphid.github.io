@@ -36,6 +36,156 @@
    <atom:link href="rss" rel="self" type="application/rss+xml" />
    
 	<item>
+	  <title>Abstraction, "the Chair is Black" and What you Could do with a Second Brain</title>
+	  <link>http://silphid.com/abstraction</link>
+		
+				
+						<author>Mathieu Frenette</author>
+				
+		
+	  <pubDate>2018-04-22T00:00:00-04:00</pubDate>
+	  <guid>http://silphid.com/abstraction</guid>
+	  <description><![CDATA[
+	     <p><em>I’m convinced that mastering the multi-headed beast called “Abstraction” is the fundamental key to what I like to call “mindful software design”. That is why I wanted my first blog post (ever) to establish that concept as foundation for the (hopefully many) other posts to come. In the first part of this article, we will have a rather philosophical look at abstraction — what it is, how it works and where you can find it when you go shopping — and, in the second part, we will get more practical and go through a few principles and best practices that make for great software designs.</em></p>
+
+<p>I recall as a teenager being totally absorbed by a great 1948 sci-fi novel written by A. E. van Vogt entitled <a href="https://en.wikipedia.org/wiki/The_World_of_Null-A">The World of Null-A</a>, in which the amnesic main character, Gilbert Gosseyn, discovers he has grown a second brain allowing him to memorize scenes with extreme detail and precision. He later teleports himself to these places by simply evoking photographic memories. He discovers that perceiving things in their finest detail is the secret art of <em>non-Aristotelian logic</em>, mastered solely by the peaceful and discreet detective people of Venus.</p>
+
+<p>As I remember, Van Vogt explains that, according to <em>non-Aristotelian logic</em>, objects should not be reduced to their simplest attributes but rather considered as rich and vastly complex realities. For example, stating that “<em>the chair is black”</em> is reductionist because the chair is certainly many more things than <em>black</em>. It might, all at once, be <em>shiny</em>, <em>tall</em>, <em>wooden</em>, <em>art-deco</em>, <em>fragile</em>, <em>worn</em>, <em>hand-made</em>, <em>slightly chipped at the bottom of one leg</em>… well, you get the point.</p>
+
+<p>This is certainly an interesting point to make, philosophically speaking. Applied to software design, we could interpret it as advice on how to consider problems holistically, with a fine understanding of their every detail. Conversely, I would argue that beyond being able to see things as they really are, your role as a software developer, designer or architect is to break up and reduce such complexity into smaller conceptual chunks.</p>
+
+<p>Since we aren’t gifted with Gilbert Gosseyn’s second brain, we must dissect, simplify and distil a potentially infinite reality into much less exhaustive, though workable, <em>abstractions</em>.</p>
+
+<h1 id="what-exactly-is-abstraction">What exactly <em>is</em> abstraction?</h1>
+
+<p>Formally, <em>abstraction</em> comes from the Latin <em>abs</em> (away from) and <em>trahere</em> (to draw). It is the reduction of something to a set of essential characteristics. That said, let me try to put it in a very code-centric way:</p>
+
+<blockquote>
+  <p>An abstraction is a simplified representation of some entity, purposefully chosen for a specific context, allowing another entity to relate to it, yet without coupling them together.</p>
+</blockquote>
+
+<p>Whoa! That’s a lot to take in at once, so let’s take it apart…</p>
+
+<h2 id="it-is-a-simplified-representation-not-the-actual-thing">It is a simplified representation, not the actual thing</h2>
+
+<p>An abstraction does not (nor should it try to) capture the entity as a whole, in all its capabilities and glory. It only represents a very limited subset of its characteristics.</p>
+
+<p>Take your fridge’s light switch for example. It represents the door’s state; the light turning on or off depending on whether the door is opened or closed. However, it’s really just a <em>representation</em> of that state — <em>not the real thing</em>.</p>
+
+<p><img src="/assets/images/diagrams/abstraction-fridge-light-switch.jpg" alt="Fridge Light Switch" style="height: 250px" /></p>
+
+<p>I’m sure, as a kid, you must have enjoyed fooling the fridge into thinking its door was closed by pressing your finger against the switch (yeah right, tell me you never did this!). This was only possible because the switch was not the actual state, just a mere representation of it.</p>
+
+<p>Consider for a moment how much more complex it would be, from an engineering point of view, to let the fridge <em>really</em> know whether its door is opened or closed. Not only would devising such a mechanism be incredibly complex but, unless you are targeting the high-security fridge market, it would also be considered overkill and would <em>still</em> rely on some form of abstraction or another.</p>
+
+<p>Interestingly, the switch abstraction is probably the simplest and most efficient abstraction that works in that context.</p>
+
+<h2 id="it-is-context-specific">It is context-specific</h2>
+
+<p>While an abstraction is limited to a subset of characteristics, our choice of precisely <em>which</em> ones depends on the <em>context</em> (in other words, a specific <em>intention</em> or <em>purpose</em>). Completely different characteristics might be drawn from the same entity in different contexts.</p>
+
+<blockquote>
+  <p>Take <em>Liam</em>, a lovely and complex fictitious human being. While he offers an <code class="highlighter-rouge">ICertifiedPublicAccountant</code> interface, which is the only one his boss cares for and wants to know about; his colleagues particularly appreciate his <code class="highlighter-rouge">IFoosballPlayer</code> interface at lunch-time. His friends rely on his <code class="highlighter-rouge">IListener</code> interface while his kids crave his <code class="highlighter-rouge">IPancakeMaker</code> interface on Sunday mornings and his <code class="highlighter-rouge">IStoryteller</code> interface at bed-time, among so many others. All without mentioning his secret <code class="highlighter-rouge">IBestLoverUnderTheSheets</code> interface, solely reserved for his loved one’s benefit.</p>
+</blockquote>
+
+<h2 id="it-relates-things-to-one-another">It relates things to one another…</h2>
+
+<p>An abstraction is intended to relate two entities together. It provides a clean and straightforward channel for them to know about each other and, typically, interact with one another.</p>
+
+<p>In the real and virtual worlds, two entities and the abstraction between them can have different names, such as client-API-server, consumer-contract-service, subscriber-subscription-publisher, employer-position-employee, listener-speech-speaker, usage-interface-implementation, etc.</p>
+
+<h2 id="yet-keeps-them-independent">…yet keeps them independent</h2>
+
+<p>An abstraction allows entities to keep a healthy distance from each other by preventing their respective implementation details from becoming entangled and thus, dependent.</p>
+
+<p>When entities know each other solely via abstract interfaces, we refer to them as <em>loosely coupled</em> (as opposed to entities that depend on other specific entities and their implementation details, which are said to be <em>strongly coupled</em>). Of course, loosely coupled entities <em>do</em> depend upon the abstraction through which they relate, which is exactly what the <a href="https://en.wikipedia.org/wiki/Dependency_inversion_principle">dependency inversion principle</a> dictates:</p>
+
+<blockquote>
+  <p>High-level modules should not depend on low-level modules. Both should depend on abstractions.</p>
+</blockquote>
+
+<p>Such loose coupling introduces an unlimited world of flexibility and possibilities, which brings us to our next point…</p>
+
+<h2 id="it-allows-for-replacement-impersonation-interception-observation-delegation">It allows for replacement, impersonation, interception, observation, delegation…</h2>
+
+<p>Swell! Sounds like a riveting <em>John le Carré</em> espionage novel where you never know who you (really) are talking to, and how the information you provide will be used. However, as opposed to espionage, in a software development context, that opacity is actually the key to flexible and reusable designs. It is essential to approaches like dependency injection and design patterns, such as the <em>strategy</em>, <em>proxy</em>, <em>decorator</em> and <em>composite</em> patterns. More on all of these in a later post.</p>
+
+<h2 id="abstractions-are-efficient">Abstractions are efficient</h2>
+
+<p>We thrive on abstractions, whether physical, virtual or merely conceptual. They are at the core of science, technology, society and progress. We sometimes refer to them as interfaces, protocoles, standards, contracts, vocabularies, idioms, etc. We naturally resort to them because they are efficient.</p>
+
+<p>However, let’s not pat ourselves on the back just yet. Humans are not the ultimate inventors of Abstraction, with a capital <em>A</em>. It has existed long before we came to crawl this earth.</p>
+
+<p>Nature strives for the straightest, most efficient path. Faced with a problem similar to the fridge door’s state, it would likely settle for a solution as straightforward as our (now famous) light switch.</p>
+
+<p>Take the enzymes in our body, which rely entirely on abstractions when they need to interact with substrates. They expose <em>binding sites</em> with very specific electrostatic conformations/shapes (we could say <em>they consume specific interfaces</em>). Substrate molecules have corresponding conformations (<em>they implement those interfaces</em>), allowing them to snap into binding sites and undergo chemical reactions.</p>
+
+<p><img src="/assets/images/diagrams/abstraction-enzyme-binding.png" alt="Enzyme Binding" style="height: 350px" /></p>
+
+<p>Enzymes relate to substrates only through the abstraction of their electrostatic conformations. They wouldn’t be able to tell a substrate apart from another molecule with the same conformation. This is exactly what we take advantage of when creating inhibitor drugs, which sport the same conformation as a given substrate, preventing the latter from being processed by binding to the enzyme in its place.</p>
+
+<p><img src="/assets/images/diagrams/abstraction-inhibiting-drug.png" alt="Inhibiting Drug" style="height: 350px" /></p>
+
+<p>Our immune system also relies on abstractions. Instead of having to memorize the infinitely complex structures of disease agents, it simply focuses on their signatures (<em>interfaces</em>). Vaccines leverage these abstractions, by mimicking disease agents (<em>implementing the same interface</em>) and stimulating the immune system to build defenses against them.</p>
+
+<h1 id="abstraction-in-software-design">Abstraction in software design</h1>
+
+<h2 id="the-interface-segregation-principle-aka-small-is-beautiful">The interface segregation principle (a.k.a. <em>small is beautiful</em>)</h2>
+
+<p>Our friends at <a href="https://en.wikipedia.org/wiki/Interface_segregation_principle">Wikipedia</a> really want us to know that:</p>
+
+<blockquote>
+  <p>The <strong>interface-segregation principle</strong> (<strong>ISP</strong>) states that no client should be forced to depend on methods it does not use. ISP splits interfaces that are very large into smaller and more specific ones so that clients will only have to know about the methods that are of interest to them. […] ISP is intended to keep a system decoupled and thus easier to refactor, change, and redeploy.</p>
+</blockquote>
+
+<p>More concisely, I would say:</p>
+
+<blockquote>
+  <p>Smaller interfaces are easier to implement, consume and understand and, as such, are more reusable, flexible and pluggable.</p>
+</blockquote>
+
+<h3 id="complexity-vs-flexibility">Complexity vs flexibility</h3>
+
+<p>I would dare state that, generally speaking:</p>
+
+<blockquote>
+  <p>The level of abstraction of an interface is <em>inversely</em> proportional to its complexity.</p>
+</blockquote>
+
+<p>This complexity can be roughly measured as a function of the number of members it contains as well as the number and complexity of parameters in its methods.</p>
+
+<p>In other words, the power of an interface resides in its simplicity. Small <em>is</em> indeed beautiful.</p>
+
+<p>One of the simplest — almost deceivingly simple — interfaces in the .NET CLR is <code class="highlighter-rouge">IDisposable</code>, which only exposes a single <code class="highlighter-rouge">Dispose()</code> method without parameters. It is not in itself rich or expressive; however, it is precisely <em>this</em> simplicity which makes it so powerful. Hundreds of .NET types implement it; the <code class="highlighter-rouge">using</code> statement leverages it; even the designers of Reactive Extensions have selected it as the tool of choice for unsubscribing from arbitrarily complex chains of observables. It is so useful that I plan on dedicating an entire post to it in the future.</p>
+
+<p>The most abstract interface; however, would be an empty one — without any method or property — whose sole presence on a type is sufficient to convey meaning. Such constructs are called <em>marker interfaces</em>, because they <em>mark</em> a type as requiring special treatment, whatever that means in that context.</p>
+
+<p>Those ideas of minimalism and simplicity will become crucial when we tackle Fluent APIs in a future article and examine how to create concise and expressive syntaxes using decorators and extension methods.</p>
+
+<h3 id="leave-implementation-details-out">Leave implementation details out</h3>
+
+<p>Nevertheless, keeping an interface small and simple is not sufficient in itself to make it more abstract and reusable. There are other factors that come into play. So I would add that:</p>
+
+<blockquote>
+  <p>Everything relating to implementation details should be kept out of an interface.</p>
+</blockquote>
+
+<p>That includes dependencies and configuration values (and basically anything that would be irrelevant if you were to re-implement that interface in a different class). These implementation details are better passed into class constructors and stored as immutable data (typically in read-only private fields). We will eventually come back to this, because it is a very important and often overlooked subject.</p>
+
+<h3 id="about-solid-principles">About SOLID principles</h3>
+
+<p>The <em>interface segregation</em> and <em>dependency inversion principles</em> are only the <em>I</em> and <em>D</em> of the five <a href="https://en.wikipedia.org/wiki/SOLID_(object-oriented_design)">S.O.L.I.D. principles</a>, which are at the core of understandable, flexible and maintainable software design. If you don’t know them already, I strongly recommend you take the time to learn about them and try to put them into practice as much as possible in your projects. More on those in future posts (I know, that’s a lot of promises I’m committing to!)</p>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>Developing a sixth sense for what is truly relevant in each given situation versus what should be hidden away as implementation details is probably one of the most vital skills in a developer’s toolbox. This will serve as main thread in this blog, while I share my thoughts and findings on all sorts of software development topics — from patterns and techniques to best practices.</p>
+
+<p>Van Vogt enlightens us on how much abstractions are taken for granted and often mistaken for the real thing. Nevertheless, when you design your next exquisite <code class="highlighter-rouge">Chair</code> class, don’t feel bad if its public interface reduces all its sophistication to a mere “<em>the chair is black!”</em></p>
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>Welcome to Silphid</title>
 	  <link>http://silphid.com/welcome</link>
 		
@@ -46,17 +196,17 @@
 	  <pubDate>2017-12-05T00:00:00-05:00</pubDate>
 	  <guid>http://silphid.com/welcome</guid>
 	  <description><![CDATA[
-	     <p>Hey! Nice to have you here! My name is Mathieu Frenette and I like to call myself a <em>mindful software designer</em>.</p>
+	     <p><em>Hey! Nice to have you here! My name is Mathieu Frenette and I like to call myself a</em> mindful software designer.</p>
 
 <p>Of course, I develop software too, but I like to think of my job mostly as a creative one. Juggling, sculpting and assembling ideas, models and flows. Crafting code meticulously like clockworks.  Not only for computers to digest, but especially for real people to use and live with, starting with my fellow developers, whose experience will be significantly impacted, for better or for worse, by the choices I make. Just like a building architect, designing a balanced, functional and agreeable space for people to live in. But in this case a <em>virtual space</em>. It’s a great responsibility, but also one of the most rewarding challenges I know.</p>
 
-<p>In this blog, I will share with you some of the most uplifting concepts and techniques I have come across in my last two decades of development. Things I have had the opportunity to learn from other, generous developers. Things I invented myself, out of failure and frustration, convinced there had to be some <em>better way</em>.</p>
+<p>In this blog, I will share with you some of the most uplifting concepts and techniques I have come across in my last two decades of development. Things I have had the opportunity to learn from other, generous developers. Other things I invented myself, out of failure and frustration, convinced there had to be some <em>better way</em>.</p>
 
 <p>It is far from an achievement. In fact, it’s only the beginning of a journey. A path I decided to call <em>mindful software design</em>.</p>
 
 <p>On this road, we’ll cover a broad range of topics, from high level concepts, patterns and best practices, to concrete techniques, such as clean and fluent API design, reactive extensions (Rx) and dependency injection, all using C# and Unity 3D as playground. I will pick many examples out of my <a href="/silphid.unity">Silphid.Unity</a> framework, which abounds in interesting patterns to dissect.</p>
 
-<p>I will be releasing my first post about <em>abstraction</em> very soon, <em>The Chair is Black (or What You Could Do With a Second Brain)</em>, so don’t forget to <a href="#subscribe">subscribe</a> to receive my latest posts as they are published !</p>
+<p>UPDATE: I have now published my first post, which you may want to read next: <a href="/abstraction">Abstraction, “the Chair is Black” and What you Could do with a Second Brain</a>. Also, don’t forget to <a href="#subscribe">subscribe</a> to receive my next posts as they are published !</p>
 
 <p>Bon voyage! :)<br />
 Mathieu</p>
