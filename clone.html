@@ -202,11 +202,17 @@ into the {body} of the default.hbs template -->
 <style>
 .screenshots p {
     float: none;
+    margin: 0px;
+}
+.screenshots p::after {
+    content: "";
+    clear: both;
+    display: table;
 }
 .screenshots img {
 	width: 250px;
 	float: left;
-	margin-right: 10px;
+	margin: 0px 10px 10px 0px;
 }
 </style>
 
