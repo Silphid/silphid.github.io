@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/silphid
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://silphid.com
+  * I am silphid (https://keybase.io/silphid) on keybase.
+  * I have a public key ASDILENr-JjGqjUa5Di5jQFCwiqbWg_oUy3nQ6YUE0F_LQo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120c82c436bf898c6aa351ae438b98d0142c22a9b5a0fe8532de743a61413417f2d0a",
+      "host": "keybase.io",
+      "kid": "0120c82c436bf898c6aa351ae438b98d0142c22a9b5a0fe8532de743a61413417f2d0a",
+      "uid": "924034d68ef70721ed10c1ace4c26119",
+      "username": "silphid"
+    },
+    "merkle_root": {
+      "ctime": 1606757509,
+      "hash": "8d46c6e1f50c3bd6c3b21474ad5590f093b7114f11c6f91aa1def92a843dff35d4165aa431792a9a7259109291bc9cdd9bd4cbec9fe9ec1e4c9746478d3c8b44",
+      "hash_meta": "e04220791d65dc89a9cf095cc91564130711f6236e659b3aa33b335e732a35d0",
+      "seqno": 18267352
+    },
+    "service": {
+      "entropy": "kKXR3mSJtQvsPdQuD6/gKZSf",
+      "hostname": "silphid.com",
+      "protocol": "http:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "5.5.0"
+  },
+  "ctime": 1606757529,
+  "expire_in": 504576000,
+  "prev": "00212a6787c107099066f2a5a147c0399da80cd72f648a0fa2a6dbd20456d353",
+  "seqno": 5,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgyCxDa/iYxqo1GuQ4uY0BQsIqm1oP6FMt50OmFBNBfy0Kp3BheWxvYWTESpcCBcQgACEqZ4fBBwmQZvKloUfAOZ2oDNcvZIoPoqbb0gRW01PEIKRWAqWcmTh1/enFN6DcM+NqV+0ke9fDca/NWGS/iXrWAgHCo3NpZ8RADxI4N/XauOenShGsDtgvIdSdjtqnPTYGKRHoINJ7YPWBA0oQwuPncrDY/kHdS66pbg0Dxcd3u8k9N2m7I5yfBKhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIKBBx6KiApT9HHAQulYh9MaO29soKk1dUThiX2kUHkwho3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/silphid
+
+==================================================================
